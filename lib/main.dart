@@ -129,9 +129,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ));
-
-      //obj.changeTheme();
-      //print("\n Theme is  {}" + ThemeChange.isDark.toString());
     });
   }
 
