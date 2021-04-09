@@ -1,68 +1,70 @@
-import 'package:first_app/CartWidget.dart';
-import 'package:first_app/shop_page.dart';
+// view of main page
+
+import 'package:first_app/Pages/account_page/account_page_view.dart';
+import 'package:first_app/Pages/shop_page/ShopPage.dart';
+import 'package:first_app/Pages/shop_page/widget/CartWidget.dart';
+import 'package:first_app/pages/home_page/HomePage.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({this.indexNumber});
-  final int indexNumber;
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Home Page",
-      home: MyStatefulHomePage(
-        indexNumber: this.indexNumber,
-      ),
-    );
-  }
-}
+/*
+This widget containt the main page ( first page after opening the app) view.
 
-class MyStatefulHomePage extends StatefulWidget {
+Currently it has a bottom navigation bar which contains
+
+Home_Page
+Shop_Page
+Account_Page
+
+*/
+
+class MyStatefulMainPageView extends StatefulWidget {
+  final int indexNumber;
+
   // created a key to make it unique
-  MyStatefulHomePage({Key key, this.indexNumber}) : super(key: key);
+  MyStatefulMainPageView({Key? key, required this.indexNumber})
+      : super(key: key);
 
-  final int indexNumber;
-
-  _MyStatefulHomePage createState() => _MyStatefulHomePage();
+  _MyStatefulMainPageView createState() => _MyStatefulMainPageView();
 }
 
-class _MyStatefulHomePage extends State<MyStatefulHomePage> {
+class _MyStatefulMainPageView extends State<MyStatefulMainPageView> {
   int _selectedIndex = 0;
-  String data = "We are at home page";
-  bool cartView = false;
-  // list the widgets according to the bottom nav options
-  List<Widget> bottomNavBodyView = [
-    Center(
-        child: Column(children: <Widget>[
-      Text("Home Page"),
-    ])),
-    // calling shopWidget for showing the data
-    MyShopWidget(),
-    Center(
-        child: Column(children: <Widget>[
-      Text("manage account"),
-    ])),
-  ];
 
-  void _onItemTapped(int index) {
-    _selectedIndex = index;
-    // this will call the build method
-    setState(() {
-      if (index == 0) {
-        data = "home page";
-      }
-      if (index == 1) {
-        data = "Shop Here";
-      }
-      if (index == 2) {
-        data = "Manage Accounts";
-      }
-    });
+  List<String> data = [];
+
+  bool cartView = false;
+  List<Widget> bottomNavBodyView = [];
+
+  _MyStatefulMainPageView() {
+    _selectedIndex = 0;
+
+    /* This data should be obtain from the API  */
+    data.add("Home Page");
+    data.add("Shop Here");
+    data.add("Account & Settings");
+
+    cartView = false;
+    bottomNavBodyView = [];
+
+    //------------------------- has to change the view
+    bottomNavBodyView.add(HomePageView());
+
+    bottomNavBodyView.add(
+        // calling shopWidget for showing the data
+        MyShopWidget());
+
+    bottomNavBodyView.add(AccountPageView());
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _selectedIndex = widget.indexNumber;
+/* ---------------------Start: Custom Methods/Callbacks ----------------------- */
+  /*
+  When the bottom navigation has been clicked 
+  */
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      print(data[_selectedIndex]);
+    });
   }
 
   /*
@@ -79,6 +81,13 @@ class _MyStatefulHomePage extends State<MyStatefulHomePage> {
       cartView = true;
     });
   }
+/* ---------------------End: Custom Methods/Callbacks ----------------------- */
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.indexNumber;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +97,7 @@ class _MyStatefulHomePage extends State<MyStatefulHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(data),
+        title: Text(data[_selectedIndex]),
         actions: <Widget>[
           // add the animations here
           IconButton(
@@ -127,26 +136,6 @@ class _MyStatefulHomePage extends State<MyStatefulHomePage> {
         //selectedIconTheme: IconThemeData.fallback(),
         selectedItemColor: Colors.amber[800], //Colors.deepOrange,
         onTap: _onItemTapped,
-      ),
-    );
-  }
-}
-
-class ShopPageView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomePage()));
-                },
-                child: Text("Register"))
-          ],
-        ),
       ),
     );
   }

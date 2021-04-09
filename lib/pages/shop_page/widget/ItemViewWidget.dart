@@ -1,37 +1,39 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:first_app/CartWidget.dart';
-import 'package:first_app/flutter_model_for_json.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'cart_list.dart';
+/*------------------ Custom Widget -------------------------- */
+import '../../../normal_classes/cart_related/cart_list.dart';
+import 'CartWidget.dart';
 
-class MyItemView<T> extends StatefulWidget {
+/*
+View the item when clicked on to it 
+*/
+
+class MyItemViewWidget<T> extends StatefulWidget {
 // pass the unique key to the parent to recognize it as a widget in the tree
-  MyItemView({Key key, this.data}) : super(key: key);
+  MyItemViewWidget({Key? key, required this.data}) : super(key: key);
 
   final T data;
 // override the parent method
   @override
-  _MyItemView createState() => _MyItemView();
+  _MyItemViewWidget createState() => _MyItemViewWidget();
 }
 
 /*
  * Create a view to show the image and its information 
  */
-class _MyItemView extends State<MyItemView> {
-  double screenWidth;
-  double screenHeight;
-  String cartString;
-  bool gotoCart;
-  bool cartView;
-  Key key;
+class _MyItemViewWidget extends State<MyItemViewWidget> {
+  double screenWidth = 0;
+  double screenHeight = 0;
+  String cartString = '';
+  bool gotoCart = false;
+  bool cartView = false;
+  Key? key;
 
-  _MyItemView() {
+  _MyItemViewWidget() {
     this.cartString = "Add to Cart";
     this.key = UniqueKey();
-    this.gotoCart = false;
-    this.cartView = false;
   }
 
   /*

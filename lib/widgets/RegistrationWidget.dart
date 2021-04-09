@@ -1,16 +1,15 @@
 import 'package:first_app/email_widget.dart';
-import 'package:first_app/text_field_widget.dart';
+import 'package:first_app/widgets/TextFieldWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/main_page.dart';
 
-class MyFormWidget extends StatefulWidget {
-  MyFormWidget({Key key}) : super(key: key);
+class MyRegistrationWidget extends StatefulWidget {
+  MyRegistrationWidget({Key? key}) : super(key: key);
 
   @override
-  _MyFormWidget createState() => _MyFormWidget();
+  _MyRegistrationWidget createState() => _MyRegistrationWidget();
 }
 
-class _MyFormWidget extends State<MyFormWidget> {
+class _MyRegistrationWidget extends State<MyRegistrationWidget> {
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -38,10 +37,12 @@ class _MyFormWidget extends State<MyFormWidget> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HomePage(indexNumber: 0)));
+                  // ToDo: Navigate to appropriate page
+                  print("Clicked");
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => FirstPage(indexNumber: 0)));
                 },
                 child: Text("Register")),
           ],

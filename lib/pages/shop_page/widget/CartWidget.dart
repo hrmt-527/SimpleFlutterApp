@@ -1,4 +1,4 @@
-import 'package:first_app/cart_list.dart';
+import 'package:first_app/normal_classes/cart_related/cart_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,7 @@ Add the item to the cart List
 Cart List either global or static
 */
 class MyCartWidget extends StatefulWidget {
-  MyCartWidget({Key key}) : super(key: key);
+  MyCartWidget({Key? key}) : super(key: key);
 
   @override
   _MyCartWidget createState() => _MyCartWidget();
@@ -19,7 +19,7 @@ class MyCartWidget extends StatefulWidget {
  */
 
 class _MyCartWidget extends State<MyCartWidget> {
-  List<dynamic> itemList;
+  List<dynamic> itemList = [];
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _MyCartWidget extends State<MyCartWidget> {
   Widget build(BuildContext context) {
     // affect in the memory reference
     itemList = CartList.cartItemList;
-    if (itemList == null) {
+    if (itemList.length == 0) {
       return Scaffold(
         appBar: AppBar(
           title: Text("My Cart"),
@@ -68,7 +68,7 @@ class _MyCartWidget extends State<MyCartWidget> {
  */
 
 // class SingleCartItemView extends StatefulWidget {
-//   SingleCartItemView({Key key}) : super(key: key);
+//   SingleCartItemView({Key? key }) : super(key: key);
 
 //   @override
 //   _SingleCartItemView createState() => _SingleCartItemView();

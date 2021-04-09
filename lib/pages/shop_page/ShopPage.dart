@@ -4,31 +4,32 @@
 // we need to create a widget which will give the shop view
 
 // wait till the full response come
-import 'package:first_app/API_operations.dart';
-import 'package:first_app/ItemView.dart';
+import 'package:first_app/normal_classes/api_useful/API_operations.dart';
+import 'widget/ItemViewWidget.dart';
 import 'package:first_app/api_call.dart';
-import 'package:first_app/flutter_model_for_json.dart';
+import 'package:first_app/Pages/shop_page/api_useful/flutter_model_for_json.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'CardWidget.dart';
+import 'widget/CardWidget.dart';
 
 class MyShopWidget extends StatefulWidget {
-  MyShopWidget({Key key}) : super(key: key);
+  MyShopWidget({Key? key}) : super(key: key);
 
   @override
   _MyShopWidget createState() => _MyShopWidget();
 }
 
 class _MyShopWidget extends State<MyShopWidget> {
-  Future<Product> resp;
-  FutureBuilder<Product> respWidget;
-  List<Product> dataItem;
+  Future<Product>? resp;
+  FutureBuilder<Product>? respWidget;
+  List<Product> dataItem = [];
   int dataItemLength = 0;
   int id = 0;
   // no one is clicked initially
   int clickedDataId = -1;
-  API_Operation api_operation;
+  // ignore: non_constant_identifier_names
+  API_Operation api_operation = new API_Operation();
   bool clicked = false;
 
   @override
@@ -41,7 +42,7 @@ class _MyShopWidget extends State<MyShopWidget> {
   }
 
   // wait till the api response
-  Future<void> getApiData() {
+  Future<void>? getApiData() {
     // as soon as data comes the app refresh/rebuild/call the build method
 
     api_operation
@@ -73,7 +74,7 @@ class _MyShopWidget extends State<MyShopWidget> {
   Widget build(BuildContext context) {
     if (clicked) {
       //itemView I will pass the identity of the
-      return MyItemView<Product>(data: dataItem[clickedDataId]);
+      return MyItemViewWidget<Product>(data: dataItem[clickedDataId]);
       //return Text("data");
     }
 

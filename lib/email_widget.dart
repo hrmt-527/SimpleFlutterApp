@@ -2,7 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 class MyEmailFieldWidget extends StatefulWidget {
-  MyEmailFieldWidget({Key key, this.hint}) : super(key: key);
+  MyEmailFieldWidget({Key? key, required this.hint}) : super(key: key);
 
   final String hint;
 
@@ -25,7 +25,7 @@ class _MyEmailFieldWidget extends State<MyEmailFieldWidget> {
         constraints: BoxConstraints.tight(const Size(200, 50)),
         child: TextFormField(
           validator: (email) {
-            if (!EmailValidator.validate(email)) {
+            if (email != null && !EmailValidator.validate(email)) {
               return "Email Wrong";
             }
             return null;
@@ -33,7 +33,7 @@ class _MyEmailFieldWidget extends State<MyEmailFieldWidget> {
           onChanged: (value) {
             //print("$value");
           },
-          onSaved: (String value) {
+          onSaved: (value) {
             //print("$value has been saved " + widget.hint);
           },
           decoration: InputDecoration(
@@ -43,7 +43,6 @@ class _MyEmailFieldWidget extends State<MyEmailFieldWidget> {
           cursorRadius: Radius.circular(1.2),
           cursorWidth: 2,
           maxLength: 30,
-          maxLengthEnforced: true,
           maxLines: 1,
           keyboardType: TextInputType.emailAddress,
         ),

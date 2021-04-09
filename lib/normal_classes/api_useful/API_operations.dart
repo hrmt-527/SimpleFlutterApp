@@ -9,8 +9,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future<List<T>> fetchDataFromApi<T>(Function callback, String url,
-    [String unencodedpath]) async {
+Future<List<T>> fetchDataFromApi<T>(
+    Function callback, String url, String unencodedpath) async {
   // response from the api
   final response = await http.get(Uri.https(url, unencodedpath));
 
@@ -25,20 +25,19 @@ Future<List<T>> fetchDataFromApi<T>(Function callback, String url,
   }
 }
 
-/**
+/*
  * Class has the different methods
  * Methods are performing the different api calls 
  */
+// ignore: camel_case_types
 class API_Operation {
   /*
-
     this function try to call the api for inserting the data and return the response of API
-
   */
   void insertData = () => {/* Return the response */};
 
-  Future<List<T>> fetchDataFromApi<T>(Function callback, String url,
-      [String unencodedpath]) async {
+  Future<List<T>> fetchDataFromApi<T>(
+      Function callback, String url, String unencodedpath) async {
     // response from the api
     final response = await http.get(Uri.https(url, unencodedpath));
 

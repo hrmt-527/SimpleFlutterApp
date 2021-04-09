@@ -14,7 +14,11 @@ class Product {
   String currency;
   String imageLocation;
 
-  Product({this.id, this.price, this.currency, this.imageLocation});
+  Product(
+      {required this.id,
+      required this.price,
+      required this.currency,
+      required this.imageLocation});
 
 // factory not understood
 

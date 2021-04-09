@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // this the stateful widget i.e. run time changes can be seen here
 class MyTextAsLinkWidget extends StatefulWidget {
-  MyTextAsLinkWidget({Key key}) : super(key: key);
+  MyTextAsLinkWidget({Key? key}) : super(key: key);
 
   @override
   _MyTextAsLinkWidget createState() => _MyTextAsLinkWidget();
@@ -23,21 +23,16 @@ class _MyTextAsLinkWidget extends State<MyTextAsLinkWidget> {
   Widget build(BuildContext context) {
     return RichText(
         text: TextSpan(
-            style: TextStyle(color: Colors.blueGrey, fontSize: 20.257),
+            style: TextStyle(color: Colors.blueGrey, fontSize: 30),
             children: <TextSpan>[
           TextSpan(
               text: 'By clicking Sign Up, you agree to our ',
+              style: TextStyle(fontSize: 10),
               // for two dots : https://dart.dev/guides/language/language-tour#cascade-notation-
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   print("clicked");
                 })
         ]));
-
-    /*        AlertDialog(
-                    title: Text("Alert"),
-                    content: Text("Eve hi "),
-                    backgroundColor: Colors.deepOrange,
-                  );*/
   }
 }
